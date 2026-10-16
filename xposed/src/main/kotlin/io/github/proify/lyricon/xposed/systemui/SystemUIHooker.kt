@@ -79,21 +79,16 @@ object SystemUIHooker : PackageHooker() {
         }
     }
 
-    /**
-     * 应用创建前的准备工作，包含崩溃检测逻辑
-     */
+    /** 应用创建前的准备工作，包含崩溃检测逻辑 */
     private fun onPreLoad() {
         YLog.info(TAG, "onPreLoad")
-
-        val context = appContext
-        if (context == null) {
+        val context = appContext ?: run {
             YLog.info(TAG, "App context not available")
             return
         }
 
         CrashDetector.getInstance(context).apply {
             record()
-            // 检测到多次连续崩溃时进入安全模式，停止后续注入
             if (isContinuousCrash()) {
                 isSafeMode = true
                 YLog.error(TAG, "检测到连续崩溃，已停止hook")
@@ -102,56 +97,41 @@ object SystemUIHooker : PackageHooker() {
         }
 
         initCrashDataChannel()
-        if (!isSafeMode) {
-            onAppCreate()
-        } else {
-            YLog.info(TAG, "Safe mode enabled, app create skipped")
-        }
+        if (!isSafeMode) onAppCreate()
+        else YLog.info(TAG, "Safe mode enabled, app create skipped")
     }
 
     private fun onAppCreate() {
         YLog.info(TAG, "onAppCreate")
-        val context = appContext
-        if (context == null) {
+        if (appContext == null) {
             YLog.info(TAG, "App context not available")
             return
         }
-
         StatusBarViewResolver.subscribe {
-            YLog.info(TAG, "New status bar view resolved ")
+            YLog.info(TAG, "New status bar view resolved ${it.javaClass.name}")
             addStatusBarView(it)
         }
-
         initialize()
     }
 
-    /**
-     * 在App onCreate完成时进行各类辅助工具和监控器的初始化
-     */
     private fun initialize() {
         YLog.info(TAG, "onInit")
         val context = appContext ?: return
-
         ScreenStateMonitor.initialize(context)
         OplusCapsuleHooker.initialize(module, classLoader)
         NotificationCoverHelper.initialize()
         ViewVisibilityTracker.initialize(module, classLoader)
         initDataChannel()
-
         initLyriconService()
-
         StatusBarDisableHooker.inject(module, classLoader)
-        StatusBarDisableHooker.addListener(object :
-            StatusBarDisableHooker.OnStatusBarDisableListener {
+        StatusBarDisableHooker.addListener(object : StatusBarDisableHooker.OnStatusBarDisableListener {
             private var lastDisableStateChanged: Boolean? = null
-
             override fun onDisableStateChanged(shouldHide: Boolean, animate: Boolean) {
                 if (lastDisableStateChanged == shouldHide) return
                 lastDisableStateChanged = shouldHide
                 StatusBarViewManager.forEach { it.onDisableStateChanged(shouldHide) }
             }
         })
-
         StatusBarColorMonitor.initialize(module, classLoader)
         AiTranslator.init(context)
         SystemUIMediaUtils.init(context)
@@ -160,7 +140,6 @@ object SystemUIHooker : PackageHooker() {
 
     private fun initLyriconService() {
         val context = appContext ?: return
-
         val service = ModuleEntry.instance
         val defaultSp = service.getRemotePreferences("default")
         val coreServiceDisable = defaultSp.getBoolean("core_service_disable", false)
@@ -172,28 +151,24 @@ object SystemUIHooker : PackageHooker() {
             YLog.info(TAG, "已禁用内置中心服务")
         }
 
-        val subscriber = LyriconFactory.createSubscriber(appContext!!)
+        val subscriber = LyriconFactory.createSubscriber(context)
         this.subscriber = subscriber
-
         subscriber.subscribeActivePlayer(LyricDataHub)
 
         subscriber.addConnectionListener(object : ConnectionListener {
             override fun onConnected(subscriber: LyriconSubscriber) {
                 YLog.info(TAG, "lyriconSubscriber onConnected")
             }
-
             override fun onReconnected(subscriber: LyriconSubscriber) {
                 YLog.info(TAG, "lyriconSubscriber onReconnected")
+                LyricDataHub.reprocessCurrentSong()
             }
-
             override fun onDisconnected(subscriber: LyriconSubscriber) {
                 YLog.info(TAG, "lyriconSubscriber onDisconnected")
             }
-
             override fun onConnectTimeout(subscriber: LyriconSubscriber) {
                 YLog.info(TAG, "lyriconSubscriber onConnectTimeout")
             }
-
         })
         mainCoroutineScope.launch {
             delay(2000)
@@ -206,60 +181,37 @@ object SystemUIHooker : PackageHooker() {
         LyriconBridge.routing(context) {
             onCommand(AppBridgeConstants.REQUEST_HIGHLIGHT_VIEW) {
                 val id = it.getString("id")
-                YLog.info(TAG, "App requested view highlight id: ")
-
-                StatusBarViewManager.forEachOnMainThread { it.highlightView(id) }
+                YLog.info(TAG, "App requested view highlight id: $id")
+                StatusBarViewManager.forEachOnMainThread { controller -> controller.highlightView(id) }
             }
-
             onQuery(AppBridgeConstants.REQUEST_VIEW_TREE) {
                 YLog.info(TAG, "App requested view tree")
-
                 val controller = StatusBarViewManager.controllers.firstOrNull() ?: return@onQuery
-
-                val data =
-                    json.safeEncode(ViewHierarchyParser.buildNodeTree(controller.statusBarView))
-                        .toByteArray(Charsets.UTF_8)
-                        .deflate()
-
-                YLog.info(TAG, "View tree reply data: ")
-
-                reply(Bundle().apply {
-                    putByteArray("result", data)
-                })
+                val data = json.safeEncode(ViewHierarchyParser.buildNodeTree(controller.statusBarView))
+                    .toByteArray(Charsets.UTF_8).deflate()
+                reply(Bundle().apply { putByteArray("result", data) })
             }
-
             onCommand(AppBridgeConstants.REQUEST_CLEAR_TRANSLATION_DB) {
                 AiTranslator.clearCache { LyricDataHub.reprocessCurrentSong() }
             }
         }
     }
 
-    /**
-     * 将自定义控制器绑定到状态栏视图
-     */
     private fun addStatusBarView(view: ViewGroup) {
         view.doOnAttach {
             val target = view.rootView as? ViewGroup ?: return@doOnAttach
             val controller = StatusBarViewController(target, LyricPrefs.getLyricStyle())
             StatusBarViewManager.add(controller)
-
             val isFirst = StatusBarViewManager.controllers.size == 1
-            if (isFirst) {
-                if (TEST_CRASH) target.postDelayed({ error("test crash") }, 3000)
-            }
+            if (isFirst && TEST_CRASH) target.postDelayed({ error("test crash") }, 3000)
         }
     }
 
-    /**
-     * 初始化崩溃相关的通信频道
-     */
     private fun initCrashDataChannel() {
         val context = appContext ?: return
         LyriconBridge.routing(context) {
             onQuery(AppBridgeConstants.REQUEST_CHECK_SAFE_MODE) {
-                reply(Bundle().apply {
-                    putBoolean("result", isSafeMode)
-                })
+                reply(Bundle().apply { putBoolean("result", isSafeMode) })
             }
         }
     }
