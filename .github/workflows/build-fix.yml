@@ -1,0 +1,146 @@
+name: Build Fix APK (Kifranei base)
+
+# 用途：以 Kifranei/lyricon 的 master 为基座，叠加「订阅端自动重连」补丁，云端构建 APK。
+# 刻意放在 ci/build-fix 分支，不进入给作者的补丁分支。
+#
+# 注意：lyricon/build.gradle.kts 中 debug/release 都走 release 签名配置，
+# 而 fork 不继承上游 Secrets，因此这里在 CI 内临时生成自签名 keystore。
+
+on:
+  push:
+    branches:
+      - ci/build-fix
+  workflow_dispatch:
+    inputs:
+      build_type:
+        description: '构建类型（默认 release）'
+        required: false
+        default: 'release'
+        type: choice
+        options:
+          - release
+          - debug
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 检出本仓库（仅为拿到工作流）
+        uses: actions/checkout@v4
+
+      - name: 设置 JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: 切换到 Kifranei 基座
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git remote add kifranei https://github.com/Kifranei/lyricon.git
+          git fetch --no-tags kifranei master
+          git checkout -B build-ci FETCH_HEAD
+          echo "base commit: $(git rev-parse HEAD)"
+          git log -1 --oneline
+
+      - name: 应用订阅端自动重连补丁
+        run: |
+          PATCH_URL="https://raw.githubusercontent.com/dhangonge/lyricon/fix/auto-reconnect-systemui/lyric/bridge/subscriber/src/main/kotlin/io/github/proify/lyricon/subscriber/internal/LyriconSubscriberImpl.kt"
+          TARGET="lyric/bridge/subscriber/src/main/kotlin/io/github/proify/lyricon/subscriber/internal/LyriconSubscriberImpl.kt"
+          curl -fsSL -o "$TARGET" "$PATCH_URL"
+          echo "patch markers: $(grep -c scheduleReconnect "$TARGET")"
+          git diff --stat
+
+      - name: 提交补丁并推送修复分支
+        continue-on-error: true
+        run: |
+          git add -A
+          git commit -m "fix(subscriber): reconnect after remote Binder disconnects"
+          git push -f origin HEAD:refs/heads/fix/kifranei-auto-reconnect
+
+      - name: 准备 Gradle 配置
+        run: |
+          if [ -f "gradle/gradle-daemon-jvm.properties" ]; then
+            rm -f gradle/gradle-daemon-jvm.properties
+          fi
+          if [ -f "gradle.properties" ]; then
+            sed -i 's/-XX:+CMSClassUnloadingEnabled//g' gradle.properties
+            sed -i 's/-Xmx8g/-Xmx4g/g; s/-Xmx6g/-Xmx4g/g' gradle.properties
+            sed -i 's/-XX:MaxMetaspaceSize=2g/-XX:MaxMetaspaceSize=1g/g' gradle.properties
+            sed -i 's/kotlin.daemon.jvmargs=-Xmx4g/kotlin.daemon.jvmargs=-Xmx2g/' gradle.properties
+          fi
+          chmod +x gradlew
+
+      - name: 生成临时自签名密钥
+        run: |
+          keytool -genkeypair -v -keystore release.jks -alias lyriconci \
+            -keyalg RSA -keysize 2048 -validity 3650 \
+            -storepass lyriconci -keypass lyriconci \
+            -dname "CN=Lyricon CI, OU=Dev, O=Local, L=NA, ST=NA, C=CN"
+
+      - name: 构建 APK
+        id: gradle
+        continue-on-error: true
+        env:
+          RELEASE_STORE_FILE: ../release.jks
+          RELEASE_STORE_PASSWORD: lyriconci
+          RELEASE_KEY_ALIAS: lyriconci
+          RELEASE_KEY_PASSWORD: lyriconci
+          BUILD_TYPE: ${{ github.event.inputs.build_type || 'release' }}
+        run: |
+          set -o pipefail
+          ./gradlew ":lyricon:assemble${BUILD_TYPE^}" --stacktrace --no-daemon 2>&1 | tee build.log
+
+      - name: 保存构建日志到 ci-logs 分支
+        if: always()
+        continue-on-error: true
+        run: |
+          mkdir -p ci-logs
+          tail -c 150000 build.log > "ci-logs/build-${GITHUB_RUN_NUMBER}.log" || true
+          git add ci-logs || true
+          git commit -m "ci: build log #${GITHUB_RUN_NUMBER}" || true
+          git push -f origin HEAD:refs/heads/ci-logs || true
+
+      - name: 收集 APK
+        if: steps.gradle.outcome == 'success'
+        run: |
+          mkdir -p dist
+          find . -path '*build/outputs/apk/*/*.apk' -print -exec cp {} dist/ \;
+          ls -l dist/
+
+      - name: 上传 Artifact
+        if: steps.gradle.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lyricon-kifranei-fix-apk
+          path: dist/*.apk
+          if-no-files-found: error
+
+      - name: 发布 Release（带 APK 附件）
+        if: steps.gradle.outcome == 'success'
+        continue-on-error: true
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: kifranei-fix-r${{ github.run_number }}
+          name: 'Kifranei 基座 · 自动重连修复 · ${{ github.event.inputs.build_type || '' }}#${{ github.run_number }}'
+          prerelease: true
+          files: dist/*.apk
+          body: |
+            基座: Kifranei/lyricon master（构建时提交见 Actions 日志）
+            补丁: 订阅端 Binder 断链接自动重连（对应上游 issue #111）
+
+            - 分支: ${{ github.ref_name }}
+            - 构建: ${{ github.event.inputs.build_type || 'release（push 触发）' }}
+            - 签名: CI 临时自签名（安装需覆盖需核心破解或先卸载）
+
+      - name: 检查结果
+        if: steps.gradle.outcome != 'success'
+        run: |
+          echo "构建失败，日志见 ci-logs 分支的 build-${GITHUB_RUN_NUMBER}.log"
+          exit 1
