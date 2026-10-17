@@ -1,0 +1,608 @@
+Downloading https://services.gradle.org/distributions/gradle-9.3.1-bin.zip
+.............10%.............20%.............30%.............40%.............50%.............60%.............70%.............80%.............90%.............100%
+
+Welcome to Gradle 9.3.1!
+
+Here are the highlights of this release:
+ - Test reporting improvements
+ - Error and warning improvements
+ - Build authoring improvements
+
+For more details see https://docs.gradle.org/9.3.1/release-notes.html
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+Calculating task graph as no cached configuration is available for tasks: :lyricon:assembleRelease
+Configuration 'releaseCompileClasspath' was resolved during configuration time.
+This is a build performance and scalability issue.
+See https://github.com/gradle/gradle/issues/2298
+Run with --info for a stacktrace.
+Configuration 'releaseRuntimeClasspath' was resolved during configuration time.
+This is a build performance and scalability issue.
+See https://github.com/gradle/gradle/issues/2298
+Run with --info for a stacktrace.
+> Task :opencc-lite:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :lyric:model:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :opencc-lite:processResources NO-SOURCE
+> Task :lyric:model:processResources NO-SOURCE
+> Task :bridge:preBuild UP-TO-DATE
+> Task :bridge:preReleaseBuild UP-TO-DATE
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preReleaseBuild UP-TO-DATE
+> Task :bridge:mergeReleaseJniLibFolders
+> Task :app:mergeReleaseJniLibFolders
+> Task :bridge:mergeReleaseNativeLibs NO-SOURCE
+> Task :app:mergeReleaseNativeLibs NO-SOURCE
+> Task :bridge:copyReleaseJniLibsProjectOnly
+> Task :app:copyReleaseJniLibsProjectOnly
+> Task :common:preBuild UP-TO-DATE
+> Task :lyricon:preBuild UP-TO-DATE
+> Task :common:preReleaseBuild UP-TO-DATE
+> Task :lyricon:preReleaseBuild UP-TO-DATE
+> Task :lyricon:mergeReleaseJniLibFolders
+> Task :xposed:preBuild UP-TO-DATE
+> Task :xposed:preReleaseBuild UP-TO-DATE
+> Task :common:mergeReleaseJniLibFolders
+> Task :common:mergeReleaseNativeLibs NO-SOURCE
+> Task :common:copyReleaseJniLibsProjectOnly
+> Task :lyric:ai:preBuild UP-TO-DATE
+> Task :lyric:ai:preReleaseBuild UP-TO-DATE
+> Task :xposed:mergeReleaseJniLibFolders
+> Task :xposed:mergeReleaseNativeLibs NO-SOURCE
+> Task :lyric:ai:mergeReleaseJniLibFolders
+> Task :xposed:copyReleaseJniLibsProjectOnly
+> Task :lyric:statusbarlyric:preBuild UP-TO-DATE
+> Task :lyric:statusbarlyric:preReleaseBuild UP-TO-DATE
+> Task :lyric:ai:mergeReleaseNativeLibs NO-SOURCE
+> Task :lyric:ai:copyReleaseJniLibsProjectOnly
+> Task :lyric:style:preBuild UP-TO-DATE
+> Task :lyric:style:preReleaseBuild UP-TO-DATE
+> Task :lyric:statusbarlyric:mergeReleaseJniLibFolders
+> Task :lyric:statusbarlyric:mergeReleaseNativeLibs NO-SOURCE
+> Task :lyric:statusbarlyric:copyReleaseJniLibsProjectOnly
+> Task :lyric:view:preBuild UP-TO-DATE
+> Task :lyric:view:preReleaseBuild UP-TO-DATE
+> Task :lyric:style:mergeReleaseJniLibFolders
+> Task :lyric:style:mergeReleaseNativeLibs NO-SOURCE
+> Task :lyric:view:mergeReleaseJniLibFolders
+> Task :lyric:style:copyReleaseJniLibsProjectOnly
+> Task :lyric:view:mergeReleaseNativeLibs NO-SOURCE
+> Task :lyric:bridge:central:preBuild UP-TO-DATE
+> Task :lyric:bridge:central:preReleaseBuild UP-TO-DATE
+> Task :lyric:bridge:central:mergeReleaseJniLibFolders
+> Task :lyric:view:copyReleaseJniLibsProjectOnly
+> Task :lyric:bridge:provider:preBuild UP-TO-DATE
+> Task :lyric:bridge:provider:preReleaseBuild UP-TO-DATE
+> Task :lyric:bridge:central:mergeReleaseNativeLibs NO-SOURCE
+> Task :lyric:bridge:central:copyReleaseJniLibsProjectOnly
+> Task :lyric:bridge:subscriber:preBuild UP-TO-DATE
+> Task :lyric:bridge:provider:mergeReleaseJniLibFolders
+> Task :lyric:bridge:subscriber:preReleaseBuild UP-TO-DATE
+> Task :lyric:bridge:provider:mergeReleaseNativeLibs NO-SOURCE
+> Task :lyric:bridge:provider:copyReleaseJniLibsProjectOnly
+> Task :lyric:bridge:subscriber:mergeReleaseJniLibFolders
+> Task :lyric:bridge:subscriber:mergeReleaseNativeLibs NO-SOURCE
+> Task :app:generateReleaseBuildConfig
+> Task :lyric:bridge:subscriber:copyReleaseJniLibsProjectOnly
+> Task :app:generateReleaseResources
+> Task :app:processReleaseNavigationResources
+> Task :app:packageReleaseResources
+> Task :bridge:compileReleaseAidl
+> Task :bridge:generateReleaseBuildConfig
+> Task :bridge:generateReleaseResources
+> Task :bridge:packageReleaseResources
+> Task :bridge:processReleaseNavigationResources
+> Task :bridge:parseReleaseLocalResources
+> Task :app:parseReleaseLocalResources
+> Task :bridge:generateReleaseRFile
+> Task :common:generateReleaseBuildConfig
+> Task :app:generateReleaseRFile
+> Task :common:processReleaseNavigationResources FROM-CACHE
+> Task :common:generateReleaseResources FROM-CACHE
+> Task :common:packageReleaseResources
+> Task :common:javaPreCompileRelease
+> Task :common:parseReleaseLocalResources FROM-CACHE
+> Task :bridge:javaPreCompileRelease FROM-CACHE
+> Task :lyric:ai:generateReleaseResources FROM-CACHE
+> Task :common:generateReleaseRFile
+> Task :lyric:ai:packageReleaseResources
+> Task :lyric:ai:processReleaseNavigationResources FROM-CACHE
+> Task :lyric:ai:parseReleaseLocalResources FROM-CACHE
+> Task :lyric:ai:generateReleaseRFile
+> Task :lyric:ai:compileReleaseKotlin
+> Task :lyric:model:compileKotlin
+> Task :lyric:model:compileJava NO-SOURCE
+> Task :lyric:model:classes UP-TO-DATE
+> Task :lyric:ai:javaPreCompileRelease FROM-CACHE
+> Task :lyric:ai:compileReleaseJavaWithJavac NO-SOURCE
+> Task :lyric:model:jar
+> Task :lyric:ai:bundleLibCompileToJarRelease
+> Task :lyric:style:generateReleaseResources FROM-CACHE
+> Task :lyric:style:processReleaseNavigationResources FROM-CACHE
+> Task :lyric:style:javaPreCompileRelease FROM-CACHE
+> Task :lyric:view:generateReleaseResources FROM-CACHE
+> Task :lyric:style:packageReleaseResources
+> Task :lyric:style:parseReleaseLocalResources FROM-CACHE
+> Task :lyric:view:packageReleaseResources
+> Task :lyric:view:processReleaseNavigationResources FROM-CACHE
+> Task :lyric:view:parseReleaseLocalResources FROM-CACHE
+> Task :lyric:style:generateReleaseRFile
+> Task :lyric:view:javaPreCompileRelease FROM-CACHE
+> Task :app:javaPreCompileRelease FROM-CACHE
+> Task :lyric:view:generateReleaseRFile
+> Task :lyric:bridge:provider:compileReleaseAidl
+> Task :lyric:bridge:subscriber:compileReleaseAidl
+> Task :xposed:compileReleaseAidl NO-SOURCE
+> Task :xposed:generateReleaseBuildConfig
+> Task :xposed:generateReleaseResources
+> Task :xposed:packageReleaseResources
+> Task :xposed:processReleaseNavigationResources
+> Task :xposed:parseReleaseLocalResources
+> Task :xposed:generateReleaseRFile
+> Task :lyric:statusbarlyric:generateReleaseResources FROM-CACHE
+> Task :lyric:statusbarlyric:packageReleaseResources
+> Task :lyric:statusbarlyric:processReleaseNavigationResources FROM-CACHE
+> Task :lyric:statusbarlyric:parseReleaseLocalResources FROM-CACHE
+> Task :lyric:statusbarlyric:generateReleaseRFile
+> Task :lyric:bridge:subscriber:generateReleaseBuildConfig
+> Task :lyric:bridge:subscriber:generateReleaseResources FROM-CACHE
+> Task :lyric:bridge:subscriber:packageReleaseResources
+> Task :lyric:bridge:subscriber:processReleaseNavigationResources FROM-CACHE
+> Task :lyric:bridge:subscriber:parseReleaseLocalResources FROM-CACHE
+> Task :lyric:bridge:subscriber:generateReleaseRFile
+> Task :opencc-lite:compileKotlin
+> Task :common:compileReleaseKotlin
+
+> Task :lyric:bridge:subscriber:compileReleaseKotlin
+w: file:///home/runner/work/lyricon/lyricon/lyric/bridge/subscriber/src/main/kotlin/io/github/proify/lyricon/subscriber/LyriconFactory.kt:43:13 'constructor(subscriberInfo: SubscriberInfo): EmptyLyriconSubscriber' is deprecated. Use io.github.proify.lyricon.subscriber.internal.EmptyLyriconSubscriber instead.
+
+> Task :lyric:bridge:subscriber:javaPreCompileRelease FROM-CACHE
+> Task :common:compileReleaseJavaWithJavac
+> Task :lyric:bridge:subscriber:compileReleaseJavaWithJavac
+> Task :common:bundleLibCompileToJarRelease
+> Task :lyric:bridge:subscriber:bundleLibCompileToJarRelease
+> Task :bridge:compileReleaseKotlin
+> Task :bridge:compileReleaseJavaWithJavac
+> Task :bridge:bundleLibCompileToJarRelease
+> Task :lyric:statusbarlyric:javaPreCompileRelease FROM-CACHE
+> Task :lyric:bridge:central:generateReleaseResources FROM-CACHE
+> Task :lyric:bridge:central:packageReleaseResources
+> Task :lyric:bridge:central:processReleaseNavigationResources FROM-CACHE
+> Task :lyric:bridge:central:parseReleaseLocalResources FROM-CACHE
+> Task :lyric:bridge:central:generateReleaseRFile
+> Task :lyric:bridge:provider:generateReleaseBuildConfig
+> Task :lyric:bridge:provider:generateReleaseResources FROM-CACHE
+> Task :lyric:bridge:provider:packageReleaseResources
+> Task :lyric:bridge:provider:processReleaseNavigationResources FROM-CACHE
+> Task :lyric:bridge:provider:parseReleaseLocalResources FROM-CACHE
+> Task :lyric:bridge:provider:generateReleaseRFile
+> Task :lyric:view:compileReleaseKotlin
+> Task :lyric:view:compileReleaseJavaWithJavac NO-SOURCE
+> Task :lyric:view:bundleLibCompileToJarRelease
+> Task :lyric:bridge:provider:javaPreCompileRelease FROM-CACHE
+> Task :lyric:bridge:central:javaPreCompileRelease FROM-CACHE
+> Task :xposed:javaPreCompileRelease FROM-CACHE
+> Task :bridge:mergeReleaseGeneratedProguardFiles
+> Task :bridge:exportReleaseConsumerProguardFiles
+> Task :common:mergeReleaseGeneratedProguardFiles
+> Task :common:exportReleaseConsumerProguardFiles
+> Task :lyric:view:mergeReleaseGeneratedProguardFiles
+> Task :lyric:view:exportReleaseConsumerProguardFiles
+> Task :lyric:ai:mergeReleaseGeneratedProguardFiles
+> Task :lyric:ai:exportReleaseConsumerProguardFiles
+> Task :lyric:bridge:subscriber:mergeReleaseGeneratedProguardFiles
+> Task :lyric:bridge:subscriber:exportReleaseConsumerProguardFiles
+> Task :bridge:bundleLibRuntimeToJarRelease
+> Task :common:bundleLibRuntimeToJarRelease
+> Task :lyric:style:compileReleaseKotlin
+> Task :lyric:style:compileReleaseJavaWithJavac NO-SOURCE
+> Task :lyric:style:bundleLibCompileToJarRelease
+> Task :lyricon:checkReleaseDuplicateClasses
+> Task :lyric:bridge:provider:compileReleaseKotlin
+> Task :lyric:bridge:provider:compileReleaseJavaWithJavac
+> Task :lyric:bridge:provider:bundleLibCompileToJarRelease
+> Task :lyric:bridge:central:compileReleaseKotlin
+> Task :lyric:bridge:central:compileReleaseJavaWithJavac NO-SOURCE
+> Task :lyric:bridge:central:bundleLibCompileToJarRelease
+> Task :lyric:style:mergeReleaseGeneratedProguardFiles
+> Task :lyric:style:exportReleaseConsumerProguardFiles
+> Task :lyric:bridge:central:mergeReleaseGeneratedProguardFiles
+> Task :lyric:bridge:central:exportReleaseConsumerProguardFiles
+> Task :lyric:bridge:provider:mergeReleaseGeneratedProguardFiles
+> Task :lyric:bridge:provider:exportReleaseConsumerProguardFiles
+> Task :lyricon:generateReleaseBuildConfig
+> Task :lyricon:generateReleaseResources
+
+> Task :lyricon:prepareLibraryDefinitionsRelease
+GitHub `rate_limit` exhausted. Won't be able to use the GitHub API. Please check if the token is provided, or enable `offlineMode`.
+
+> Task :lyricon:packageReleaseResources
+> Task :lyric:statusbarlyric:compileReleaseKotlin
+> Task :lyric:statusbarlyric:compileReleaseJavaWithJavac NO-SOURCE
+> Task :lyric:statusbarlyric:bundleLibCompileToJarRelease
+> Task :lyric:statusbarlyric:mergeReleaseGeneratedProguardFiles
+> Task :lyric:statusbarlyric:exportReleaseConsumerProguardFiles
+> Task :lyricon:javaPreCompileRelease FROM-CACHE
+> Task :app:prepareReleaseArtProfile
+> Task :bridge:prepareReleaseArtProfile
+> Task :common:prepareReleaseArtProfile
+> Task :xposed:prepareReleaseArtProfile
+> Task :lyric:ai:prepareReleaseArtProfile
+> Task :lyric:statusbarlyric:prepareReleaseArtProfile
+> Task :lyric:style:prepareReleaseArtProfile
+> Task :lyric:view:prepareReleaseArtProfile
+> Task :lyricon:processReleaseNavigationResources
+> Task :lyric:bridge:central:prepareReleaseArtProfile
+> Task :lyric:bridge:provider:prepareReleaseArtProfile
+> Task :lyric:bridge:subscriber:prepareReleaseArtProfile
+> Task :lyricon:parseReleaseLocalResources
+> Task :lyricon:generateReleaseRFile
+> Task :app:mapReleaseSourceSetPaths
+> Task :lyricon:mergeReleaseArtProfile
+> Task :bridge:mapReleaseSourceSetPaths
+> Task :bridge:compileReleaseLibraryResources
+> Task :common:mapReleaseSourceSetPaths
+> Task :common:compileReleaseLibraryResources FROM-CACHE
+> Task :app:writeReleaseAarMetadata
+> Task :bridge:writeReleaseAarMetadata
+> Task :common:writeReleaseAarMetadata
+> Task :xposed:writeReleaseAarMetadata
+> Task :lyric:ai:writeReleaseAarMetadata
+> Task :lyric:statusbarlyric:writeReleaseAarMetadata
+> Task :lyric:style:writeReleaseAarMetadata
+> Task :app:compileReleaseLibraryResources
+> Task :lyric:view:writeReleaseAarMetadata
+> Task :lyric:bridge:central:writeReleaseAarMetadata
+> Task :lyric:bridge:provider:writeReleaseAarMetadata
+> Task :lyric:bridge:subscriber:writeReleaseAarMetadata
+> Task :lyricon:mapReleaseSourceSetPaths
+> Task :lyricon:compileReleaseNavigationResources
+> Task :lyricon:checkReleaseAarMetadata
+> Task :lyricon:createReleaseCompatibleScreenManifests
+> Task :app:extractDeepLinksRelease
+> Task :app:processReleaseManifest
+> Task :bridge:extractDeepLinksRelease FROM-CACHE
+> Task :bridge:processReleaseManifest
+> Task :common:extractDeepLinksRelease FROM-CACHE
+> Task :common:processReleaseManifest
+> Task :lyricon:extractDeepLinksRelease
+> Task :xposed:extractDeepLinksRelease FROM-CACHE
+> Task :xposed:processReleaseManifest
+> Task :lyric:ai:extractDeepLinksRelease FROM-CACHE
+> Task :lyric:ai:processReleaseManifest
+> Task :lyric:statusbarlyric:extractDeepLinksRelease FROM-CACHE
+> Task :lyric:statusbarlyric:processReleaseManifest
+> Task :lyric:style:extractDeepLinksRelease FROM-CACHE
+> Task :lyric:style:processReleaseManifest
+> Task :lyric:view:extractDeepLinksRelease FROM-CACHE
+> Task :lyric:view:processReleaseManifest
+> Task :lyric:bridge:central:extractDeepLinksRelease FROM-CACHE
+> Task :lyric:bridge:central:processReleaseManifest
+> Task :lyric:bridge:provider:extractDeepLinksRelease FROM-CACHE
+> Task :lyric:bridge:provider:processReleaseManifest
+> Task :lyric:bridge:subscriber:extractDeepLinksRelease FROM-CACHE
+> Task :lyric:bridge:subscriber:processReleaseManifest
+> Task :lyricon:processReleaseMainManifest
+> Task :lyricon:processReleaseManifest
+> Task :lyricon:processReleaseManifestForPackage
+> Task :xposed:mapReleaseSourceSetPaths
+> Task :xposed:compileReleaseLibraryResources
+> Task :lyric:ai:mapReleaseSourceSetPaths
+> Task :lyric:ai:compileReleaseLibraryResources FROM-CACHE
+> Task :lyric:statusbarlyric:mapReleaseSourceSetPaths
+> Task :lyric:statusbarlyric:compileReleaseLibraryResources FROM-CACHE
+> Task :lyric:style:mapReleaseSourceSetPaths
+> Task :lyric:style:compileReleaseLibraryResources FROM-CACHE
+> Task :lyric:view:mapReleaseSourceSetPaths
+> Task :lyricon:mergeReleaseResources
+> Task :lyric:view:compileReleaseLibraryResources FROM-CACHE
+> Task :lyric:bridge:provider:mapReleaseSourceSetPaths
+> Task :lyric:bridge:central:mapReleaseSourceSetPaths
+> Task :lyric:bridge:central:compileReleaseLibraryResources FROM-CACHE
+> Task :lyric:bridge:subscriber:mapReleaseSourceSetPaths
+> Task :lyric:bridge:provider:compileReleaseLibraryResources FROM-CACHE
+> Task :lyric:bridge:subscriber:compileReleaseLibraryResources FROM-CACHE
+> Task :lyric:ai:bundleLibRuntimeToJarRelease
+> Task :lyric:statusbarlyric:bundleLibRuntimeToJarRelease
+> Task :lyric:style:bundleLibRuntimeToJarRelease
+> Task :lyric:view:bundleLibRuntimeToJarRelease
+> Task :lyric:bridge:central:bundleLibRuntimeToJarRelease
+> Task :lyric:bridge:provider:bundleLibRuntimeToJarRelease
+> Task :lyric:bridge:subscriber:bundleLibRuntimeToJarRelease
+> Task :lyricon:extractProguardFiles
+> Task :bridge:processReleaseJavaRes
+> Task :common:processReleaseJavaRes
+> Task :lyric:ai:processReleaseJavaRes
+> Task :lyric:statusbarlyric:processReleaseJavaRes
+> Task :lyric:style:processReleaseJavaRes
+> Task :lyric:view:processReleaseJavaRes
+> Task :lyric:bridge:central:processReleaseJavaRes
+> Task :lyric:bridge:provider:processReleaseJavaRes
+> Task :lyric:bridge:subscriber:processReleaseJavaRes
+> Task :lyricon:mergeReleaseStartupProfile
+> Task :app:generateReleaseAssets UP-TO-DATE
+> Task :app:mergeReleaseAssets
+> Task :bridge:generateReleaseAssets UP-TO-DATE
+> Task :bridge:mergeReleaseAssets
+> Task :common:generateReleaseAssets UP-TO-DATE
+> Task :common:mergeReleaseAssets
+> Task :lyricon:generateReleaseAssets UP-TO-DATE
+> Task :xposed:generateReleaseAssets UP-TO-DATE
+> Task :xposed:mergeReleaseAssets
+> Task :lyric:ai:generateReleaseAssets UP-TO-DATE
+> Task :lyric:ai:mergeReleaseAssets
+> Task :lyric:statusbarlyric:generateReleaseAssets UP-TO-DATE
+> Task :lyric:statusbarlyric:mergeReleaseAssets
+> Task :lyric:style:generateReleaseAssets UP-TO-DATE
+> Task :lyric:style:mergeReleaseAssets
+> Task :lyric:view:generateReleaseAssets UP-TO-DATE
+> Task :lyric:view:mergeReleaseAssets
+> Task :lyric:bridge:central:generateReleaseAssets UP-TO-DATE
+> Task :lyric:bridge:central:mergeReleaseAssets
+> Task :lyric:bridge:provider:generateReleaseAssets UP-TO-DATE
+> Task :lyric:bridge:provider:mergeReleaseAssets
+> Task :lyric:bridge:subscriber:generateReleaseAssets UP-TO-DATE
+> Task :lyric:bridge:subscriber:mergeReleaseAssets
+> Task :lyricon:mergeReleaseAssets
+> Task :lyricon:compressReleaseAssets
+> Task :lyricon:extractReleaseVersionControlInfo
+> Task :app:extractProguardFiles
+> Task :bridge:createFullJarRelease
+> Task :bridge:extractProguardFiles
+> Task :common:createFullJarRelease
+> Task :common:extractProguardFiles
+warn: removing resource io.github.kifranei.lyricon.fork:string/about_summary_installerx without required default value.
+warn: removing resource io.github.kifranei.lyricon.fork:string/basic without required default value.
+warn: removing resource io.github.kifranei.lyricon.fork:string/dialog_summary_translation_max_tokens without required default value.
+warn: removing resource io.github.kifranei.lyricon.fork:string/item_ai_config_test_summary without required default value.
+warn: removing resource io.github.kifranei.lyricon.fork:string/item_base_double_tap_switch_clock without required default value.
+warn: removing resource io.github.kifranei.lyricon.fork:string/item_base_double_tap_switch_clock_summary without required default value.
+warn: removing resource io.github.kifranei.lyricon.fork:string/item_logo_section_basic without required default value.
+warn: removing resource io.github.kifranei.lyricon.fork:string/item_text_sustain_glow without required default value.
+warn: removing resource io.github.kifranei.lyricon.fork:string/item_text_sustain_glow_summary without required default value.
+warn: removing resource io.github.kifranei.lyricon.fork:string/item_translation_max_tokens without required default value.
+warn: removing resource io.github.kifranei.lyricon.fork:string/item_translation_openai without required default value.
+warn: removing resource io.github.kifranei.lyricon.fork:string/message_ai_config_testing without required default value.
+warn: removing resource io.github.kifranei.lyricon.fork:string/option_translation_provider_openai without required default value.
+warn: removing resource io.github.kifranei.lyricon.fork:string/section_base without required default value.
+
+> Task :lyricon:processReleaseResources
+> Task :common:prepareLintJarForPublish
+> Task :bridge:prepareLintJarForPublish
+> Task :lyric:ai:createFullJarRelease
+> Task :lyric:ai:extractProguardFiles
+> Task :common:generateReleaseLintModel
+> Task :bridge:generateReleaseLintModel
+> Task :lyric:ai:prepareLintJarForPublish
+> Task :lyric:style:createFullJarRelease
+> Task :lyric:style:extractProguardFiles
+> Task :lyric:style:prepareLintJarForPublish
+> Task :lyric:view:createFullJarRelease
+> Task :lyric:view:extractProguardFiles
+> Task :lyric:view:generateReleaseLintModel
+> Task :lyric:view:prepareLintJarForPublish
+> Task :bridge:checkReleaseAarMetadata
+> Task :bridge:stripReleaseDebugSymbols NO-SOURCE
+> Task :bridge:copyReleaseJniLibsProjectAndLocalJars
+> Task :bridge:extractDeepLinksForAarRelease
+> Task :lyric:ai:generateReleaseLintModel
+> Task :lyric:style:generateReleaseLintModel
+> Task :bridge:mergeReleaseConsumerProguardFiles
+> Task :bridge:mergeReleaseJavaResource
+> Task :lyric:style:checkReleaseAarMetadata
+> Task :lyric:style:stripReleaseDebugSymbols NO-SOURCE
+> Task :lyric:style:copyReleaseJniLibsProjectAndLocalJars
+> Task :lyric:style:extractDeepLinksForAarRelease FROM-CACHE
+> Task :app:compileReleaseKotlin
+> Task :bridge:extractReleaseAnnotations
+> Task :lyric:style:extractReleaseAnnotations
+> Task :lyric:style:mergeReleaseConsumerProguardFiles
+> Task :lyric:style:mergeReleaseJavaResource
+> Task :bridge:syncReleaseLibJars
+> Task :bridge:bundleReleaseLocalLintAar
+> Task :lyric:style:syncReleaseLibJars
+> Task :common:checkReleaseAarMetadata
+> Task :lyric:style:bundleReleaseLocalLintAar
+> Task :common:stripReleaseDebugSymbols NO-SOURCE
+> Task :common:copyReleaseJniLibsProjectAndLocalJars
+> Task :common:extractDeepLinksForAarRelease FROM-CACHE
+> Task :common:mergeReleaseConsumerProguardFiles
+> Task :common:mergeReleaseJavaResource
+> Task :common:extractReleaseAnnotations
+> Task :lyric:view:checkReleaseAarMetadata
+> Task :lyric:view:stripReleaseDebugSymbols NO-SOURCE
+> Task :lyric:view:copyReleaseJniLibsProjectAndLocalJars
+> Task :lyric:view:extractDeepLinksForAarRelease FROM-CACHE
+> Task :common:syncReleaseLibJars
+> Task :lyric:view:extractReleaseAnnotations
+> Task :common:bundleReleaseLocalLintAar
+> Task :lyric:view:mergeReleaseConsumerProguardFiles
+> Task :lyric:view:mergeReleaseJavaResource
+> Task :lyric:ai:checkReleaseAarMetadata
+> Task :lyric:ai:stripReleaseDebugSymbols NO-SOURCE
+> Task :lyric:ai:copyReleaseJniLibsProjectAndLocalJars
+> Task :lyric:ai:extractDeepLinksForAarRelease FROM-CACHE
+> Task :lyric:view:syncReleaseLibJars
+> Task :lyric:view:bundleReleaseLocalLintAar
+> Task :lyric:ai:mergeReleaseConsumerProguardFiles
+> Task :lyric:ai:mergeReleaseJavaResource
+> Task :bridge:writeReleaseLintModelMetadata
+> Task :common:writeReleaseLintModelMetadata
+> Task :lyric:ai:writeReleaseLintModelMetadata
+> Task :lyric:style:writeReleaseLintModelMetadata
+> Task :lyric:view:writeReleaseLintModelMetadata
+> Task :app:prepareLintJarForPublish
+> Task :bridge:generateReleaseLintVitalModel
+> Task :lyric:ai:extractReleaseAnnotations
+> Task :lyric:ai:syncReleaseLibJars
+> Task :lyric:ai:bundleReleaseLocalLintAar
+> Task :common:generateReleaseLintVitalModel
+> Task :bridge:lintVitalAnalyzeRelease
+> Task :xposed:extractProguardFiles
+> Task :lyric:statusbarlyric:createFullJarRelease
+> Task :lyric:statusbarlyric:extractProguardFiles
+> Task :lyric:bridge:subscriber:createFullJarRelease
+> Task :lyric:bridge:subscriber:extractProguardFiles
+> Task :lyric:bridge:subscriber:generateReleaseLintModel
+> Task :lyric:bridge:subscriber:prepareLintJarForPublish
+> Task :lyric:statusbarlyric:generateReleaseLintModel
+> Task :lyric:statusbarlyric:prepareLintJarForPublish
+> Task :lyric:bridge:central:createFullJarRelease
+> Task :lyric:bridge:central:extractProguardFiles
+> Task :lyric:bridge:provider:createFullJarRelease
+> Task :lyric:bridge:provider:extractProguardFiles
+> Task :lyric:bridge:provider:generateReleaseLintModel
+> Task :lyric:bridge:provider:prepareLintJarForPublish
+> Task :lyric:bridge:central:generateReleaseLintModel
+> Task :lyric:bridge:central:prepareLintJarForPublish
+> Task :xposed:prepareLintJarForPublish
+> Task :app:checkReleaseAarMetadata
+> Task :app:stripReleaseDebugSymbols NO-SOURCE
+> Task :app:copyReleaseJniLibsProjectAndLocalJars
+> Task :app:extractDeepLinksForAarRelease FROM-CACHE
+> Task :app:extractReleaseAnnotations
+> Task :xposed:checkReleaseAarMetadata
+> Task :xposed:stripReleaseDebugSymbols NO-SOURCE
+> Task :xposed:copyReleaseJniLibsProjectAndLocalJars
+> Task :xposed:extractDeepLinksForAarRelease FROM-CACHE
+> Task :lyric:statusbarlyric:checkReleaseAarMetadata
+> Task :lyric:statusbarlyric:stripReleaseDebugSymbols NO-SOURCE
+> Task :lyric:statusbarlyric:copyReleaseJniLibsProjectAndLocalJars
+> Task :lyric:statusbarlyric:extractDeepLinksForAarRelease FROM-CACHE
+> Task :lyric:statusbarlyric:extractReleaseAnnotations
+> Task :lyric:statusbarlyric:mergeReleaseConsumerProguardFiles
+> Task :lyric:statusbarlyric:mergeReleaseJavaResource
+> Task :lyric:statusbarlyric:syncReleaseLibJars
+> Task :lyric:statusbarlyric:bundleReleaseLocalLintAar
+> Task :lyric:bridge:central:checkReleaseAarMetadata
+> Task :lyric:bridge:central:stripReleaseDebugSymbols NO-SOURCE
+> Task :lyric:bridge:central:copyReleaseJniLibsProjectAndLocalJars
+> Task :lyric:bridge:central:extractDeepLinksForAarRelease FROM-CACHE
+> Task :lyric:bridge:central:extractReleaseAnnotations
+> Task :lyric:bridge:central:mergeReleaseConsumerProguardFiles
+> Task :lyric:bridge:central:mergeReleaseJavaResource
+> Task :lyric:bridge:central:syncReleaseLibJars
+> Task :lyric:bridge:central:bundleReleaseLocalLintAar
+> Task :lyric:bridge:provider:checkReleaseAarMetadata
+> Task :lyric:bridge:provider:stripReleaseDebugSymbols NO-SOURCE
+> Task :lyric:bridge:provider:copyReleaseJniLibsProjectAndLocalJars
+> Task :lyric:bridge:provider:extractDeepLinksForAarRelease FROM-CACHE
+> Task :lyric:bridge:provider:extractReleaseAnnotations
+> Task :lyric:bridge:provider:mergeReleaseConsumerProguardFiles
+> Task :lyric:bridge:provider:mergeReleaseJavaResource
+> Task :lyric:bridge:provider:syncReleaseLibJars
+> Task :lyric:bridge:provider:bundleReleaseLocalLintAar
+> Task :lyric:bridge:subscriber:checkReleaseAarMetadata
+> Task :lyric:bridge:subscriber:stripReleaseDebugSymbols NO-SOURCE
+> Task :lyric:bridge:subscriber:copyReleaseJniLibsProjectAndLocalJars
+> Task :lyric:bridge:subscriber:extractDeepLinksForAarRelease FROM-CACHE
+> Task :lyric:bridge:subscriber:extractReleaseAnnotations
+> Task :lyric:bridge:subscriber:mergeReleaseConsumerProguardFiles
+> Task :lyric:bridge:subscriber:mergeReleaseJavaResource
+> Task :lyric:bridge:subscriber:syncReleaseLibJars
+> Task :lyric:bridge:subscriber:bundleReleaseLocalLintAar
+> Task :app:writeReleaseLintModelMetadata
+> Task :lyric:statusbarlyric:writeReleaseLintModelMetadata
+> Task :lyric:bridge:central:writeReleaseLintModelMetadata
+> Task :lyric:bridge:provider:writeReleaseLintModelMetadata
+> Task :lyric:bridge:subscriber:writeReleaseLintModelMetadata
+> Task :xposed:writeReleaseLintModelMetadata
+> Task :common:lintVitalAnalyzeRelease
+> Task :lyric:ai:lintVitalAnalyzeRelease
+
+> Task :app:compileReleaseKotlin
+w: file:///home/runner/work/lyricon/lyricon/app/src/main/kotlin/io/github/proify/lyricon/app/compose/theme/Theme.kt:45:20 'var statusBarColor: Int' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/lyricon/lyricon/app/src/main/kotlin/io/github/proify/lyricon/app/compose/theme/Theme.kt:46:20 'var navigationBarColor: Int' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/lyricon/lyricon/app/src/main/kotlin/io/github/proify/lyricon/app/compose/theme/Theme.kt:48:24 'var isStatusBarContrastEnforced: Boolean' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/lyricon/lyricon/app/src/main/kotlin/io/github/proify/lyricon/app/ui/tabs/SettingsPage.kt:71:17 'fun updateRemoteLyricStyle(): Unit' is deprecated. 不需要手动调用，远程自动根据key变化刷新.
+w: file:///home/runner/work/lyricon/lyricon/app/src/main/kotlin/io/github/proify/lyricon/app/ui/tabs/SettingsPage.kt:389:13 'constructor(icon: ComposableFunction1<Modifier, Unit>? = ..., title: String? = ..., summary: String? = ...): DropdownItem' is deprecated. Use DropdownItem instead.
+w: file:///home/runner/work/lyricon/lyricon/app/src/main/kotlin/top/yukonga/miuix/kmp/extra/SuperDropdown.kt:20:33 'constructor(icon: ComposableFunction1<Modifier, Unit>? = ..., title: String? = ..., summary: String? = ...): DropdownItem' is deprecated. Use DropdownItem instead.
+w: file:///home/runner/work/lyricon/lyricon/app/src/main/kotlin/top/yukonga/miuix/kmp/extra/SuperSpinner.kt:11:17 'typealias SpinnerEntry = DropdownItem' is deprecated. Use DropdownItem instead.
+
+> Task :opencc-lite:compileJava NO-SOURCE
+> Task :opencc-lite:classes UP-TO-DATE
+> Task :lyric:style:lintVitalAnalyzeRelease
+> Task :app:processReleaseJavaRes
+> Task :app:mergeReleaseJavaResource
+> Task :app:compileReleaseJavaWithJavac
+> Task :app:mergeReleaseGeneratedProguardFiles
+> Task :app:exportReleaseConsumerProguardFiles
+> Task :app:bundleLibCompileToJarRelease
+> Task :opencc-lite:jar
+> Task :app:bundleLibRuntimeToJarRelease
+> Task :lyric:statusbarlyric:lintVitalAnalyzeRelease
+> Task :lyricon:mergeReleaseNativeLibs
+
+> Task :lyricon:stripReleaseDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libandroidx.graphics.path.so. Run with --info option to learn more.
+
+> Task :lyricon:extractReleaseNativeSymbolTables
+> Task :lyricon:mergeReleaseNativeDebugMetadata NO-SOURCE
+> Task :app:generateReleaseLintVitalModel
+> Task :app:createFullJarRelease
+> Task :app:generateReleaseLintModel
+> Task :app:mergeReleaseConsumerProguardFiles
+> Task :app:syncReleaseLibJars
+> Task :app:bundleReleaseLocalLintAar
+> Task :xposed:extractReleaseAnnotations
+> Task :lyric:bridge:central:lintVitalAnalyzeRelease
+> Task :lyric:bridge:provider:lintVitalAnalyzeRelease
+> Task :lyric:view:lintVitalAnalyzeRelease
+> Task :lyric:ai:generateReleaseLintVitalModel
+> Task :lyric:statusbarlyric:generateReleaseLintVitalModel
+> Task :lyric:style:generateReleaseLintVitalModel
+> Task :lyric:view:generateReleaseLintVitalModel
+> Task :lyric:bridge:central:generateReleaseLintVitalModel
+> Task :lyric:bridge:provider:generateReleaseLintVitalModel
+> Task :lyric:bridge:subscriber:generateReleaseLintVitalModel
+> Task :lyricon:collectReleaseDependencies
+> Task :lyricon:sdkReleaseDependencyData
+> Task :lyricon:validateSigningRelease
+> Task :lyricon:writeReleaseAppMetadata
+> Task :lyricon:writeReleaseSigningConfigVersions
+> Task :lyric:bridge:subscriber:lintVitalAnalyzeRelease
+
+> Task :xposed:compileReleaseKotlin
+w: file:///home/runner/work/lyricon/lyricon/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/lyric/control/G2RoundedCorner.kt:57:29 'fun setConvexPath(p0: Path): Unit' is deprecated. Deprecated in Java.
+
+> Task :xposed:processReleaseJavaRes
+> Task :xposed:mergeReleaseJavaResource
+> Task :xposed:compileReleaseJavaWithJavac
+> Task :xposed:mergeReleaseGeneratedProguardFiles
+> Task :xposed:exportReleaseConsumerProguardFiles
+> Task :xposed:bundleLibCompileToJarRelease
+> Task :lyricon:compileReleaseKotlin NO-SOURCE
+> Task :lyricon:processReleaseJavaRes NO-SOURCE
+> Task :xposed:bundleLibRuntimeToJarRelease
+> Task :xposed:createFullJarRelease
+> Task :xposed:generateReleaseLintModel
+> Task :xposed:mergeReleaseConsumerProguardFiles
+> Task :xposed:syncReleaseLibJars
+> Task :xposed:bundleReleaseLocalLintAar
+> Task :lyricon:compileReleaseJavaWithJavac
+> Task :lyricon:mergeReleaseJavaResource
+> Task :lyricon:mergeReleaseGeneratedProguardFiles
+> Task :lyricon:generateReleaseLintVitalReportModel
+> Task :xposed:generateReleaseLintVitalModel
+> Task :lyricon:expandReleaseArtProfileWildcards
+> Task :app:lintVitalAnalyzeRelease
+> Task :xposed:lintVitalAnalyzeRelease
+> Task :lyricon:minifyReleaseWithR8
+> Task :lyricon:lintVitalAnalyzeRelease
+> Task :lyricon:lintVitalReportRelease
+> Task :lyricon:lintVitalRelease
+> Task :lyricon:convertShrunkResourcesToBinaryRelease
+> Task :lyricon:optimizeReleaseResources
+> Task :lyricon:compileReleaseArtProfile
+> Task :lyricon:packageRelease
+> Task :lyricon:assembleRelease
+> Task :cleanAllApks
+> Task :lyricon:createReleaseApkListingFileRedirect
+> Task :lyricon:copyReleaseApk
+> Task :zipReleaseApks
+
+[Incubating] Problems report is available at: file:///home/runner/work/lyricon/lyricon/build/reports/problems/problems-report.html
+
+BUILD SUCCESSFUL in 10m 17s
+466 actionable tasks: 403 executed, 63 from cache
+Configuration cache entry stored.
