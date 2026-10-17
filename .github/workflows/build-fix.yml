@@ -1,10 +1,8 @@
 name: Build Fix APK (Kifranei base)
 
-# 用途：以 Kifranei/lyricon 的 master 为基座，叠加「订阅端自动重连」补丁，云端构建 APK。
-# 刻意放在 ci/build-fix 分支，不进入给作者的补丁分支。
-#
-# 注意：lyricon/build.gradle.kts 中 debug/release 都走 release 签名配置，
-# 而 fork 不继承上游 Secrets，因此这里在 CI 内临时生成自签名 keystore。
+# 以 Kifranei/lyricon 的 master 为基座，叠加「订阅端自动重连」补丁，云端构建 APK。
+# lyrion/build.gradle.kts 中 debug/release 都走 release 签名配置，
+# 而 fork 不继承上游 Secrets，因此在 CI 内临时生成自签名 keystore。
 
 on:
   push:
@@ -13,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       build_type:
-        description: '构建类型（默认 release）'
+        description: '构建类型（不填则 release）'
         required: false
         default: 'release'
         type: choice
@@ -92,17 +90,24 @@ jobs:
           RELEASE_STORE_PASSWORD: lyriconci
           RELEASE_KEY_ALIAS: lyriconci
           RELEASE_KEY_PASSWORD: lyriconci
-          BUILD_TYPE: ${{ github.event.inputs.build_type || 'release' }}
         run: |
           set -o pipefail
-          ./gradlew ":lyricon:assemble${BUILD_TYPE^}" --stacktrace --no-daemon 2>&1 | tee build.log
+          BUILD_TYPE="${{ github.event.inputs.build_type }}"
+          if [ -z "$BUILD_TYPE" ]; then BUILD_TYPE=release; fi
+          CAP="$(printf '%s' "$BUILD_TYPE" | cut -c1 | tr '[:lower:]' '[:upper:]')"
+          REST="$(printf '%s' "$BUILD_TYPE" | cut -c2-)"
+          TASK=":lyricon:assemble${CAP}${REST}"
+          echo "build task: $TASK"
+          ./gradlew "$TASK" --stacktrace --no-daemon 2>&1 | tee build.log
 
       - name: 保存构建日志到 ci-logs 分支
         if: always()
         continue-on-error: true
         run: |
           mkdir -p ci-logs
-          tail -c 150000 build.log > "ci-logs/build-${GITHUB_RUN_NUMBER}.log" || true
+          if [ -f build.log ]; then
+            tail -c 150000 build.log > "ci-logs/build-${GITHUB_RUN_NUMBER}.log"
+          fi
           git add ci-logs || true
           git commit -m "ci: build log #${GITHUB_RUN_NUMBER}" || true
           git push -f origin HEAD:refs/heads/ci-logs || true
@@ -128,16 +133,14 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: kifranei-fix-r${{ github.run_number }}
-          name: 'Kifranei 基座 · 自动重连修复 · ${{ github.event.inputs.build_type || '' }}#${{ github.run_number }}'
+          name: Kifranei 基座自动重连修复 r${{ github.run_number }}
           prerelease: true
           files: dist/*.apk
           body: |
             基座: Kifranei/lyricon master（构建时提交见 Actions 日志）
             补丁: 订阅端 Binder 断链接自动重连（对应上游 issue #111）
-
-            - 分支: ${{ github.ref_name }}
-            - 构建: ${{ github.event.inputs.build_type || 'release（push 触发）' }}
-            - 签名: CI 临时自签名（安装需覆盖需核心破解或先卸载）
+            签名: CI 临时自签名（覆盖安装需核心破解或先卸载）
+            工作流: .github/workflows/build-fix.yml
 
       - name: 检查结果
         if: steps.gradle.outcome != 'success'
